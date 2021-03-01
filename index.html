@@ -13,7 +13,11 @@
     <!-- Grouped Layer Plugin: https://github.com/ismyrnow/leaflet-groupedlayercontrol  -->
     <link rel="stylesheet" href="https://stephsaephan.github.io/leaflet-map-example/CSS/leaflet.groupedlayercontrol.min.css">
     <script src="https://stephsaephan.github.io/leaflet-map-example/JS/leaflet.groupedlayercontrol.min.js" type="text/javascript"></script>
-    
+    <!--add leaflet-locatecontrol-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://jaaae.github.io/leaflet_learning/plugin/leaflet.locationcontrol/L.Control.Locate.min.css" />
+    <script src="https://jaaae.github.io/leaflet_learning/plugin/leaflet.locationcontrol/L.Control.Locate.js"></script>
+
     <!--add fullscreen-->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
@@ -21,6 +25,11 @@
     <!-- Overview mini map Plugin: https://github.com/Norkart/Leaflet-MiniMap -->
     <link rel="stylesheet" href="https://stephsaephan.github.io/leaflet-map-example/CSS/Control.MiniMap.css">
     <script src="https://stephsaephan.github.io/leaflet-map-example/JS/Control.MiniMap.min.js" type="text/javascript"></script>
+    
+    <!-- add geo geocoder-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+ 
     
 
     <style>
@@ -37,12 +46,8 @@
         margin: 0px;
         }
         
-        .leaflet-control-layers-expanded {
-        height: 400px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        }
-        .leaflet-control-layers-group-name{font-weight:700;margin-bottom:.2em;margin-left:3px}.leaflet-control-layers-group{margin-bottom:.5em}.leaflet-control-layers-scrollbar{overflow-y:hidden;padding-right:10px}
+        
+        .leaflet-control-layers-group-name{font-weight:700;margin-bottom:.2em;margin-left:3px}.leaflet-control-layers-group{margin-bottom:.5em}.leaflet-control-layers-scrollbar{max-height: 400px;overflow-y:scroll;padding-right:10px}
         
        
     </style>
@@ -137,6 +142,7 @@
         var map = L.map('map', {
             center: [24.695258, 121.100705], 
             zoom: 15,
+            zoomControl: false, //false -> remove default zoom control
             layers:[OpenStreetMap_Mapnik]
           
             
@@ -149,10 +155,7 @@
             "正射影像_混合" : Orthophoto_mix,
             "Google 衛星" : googleSat,
             "1966-Corona衛星影像" : Taiwan_Corona_1966,
-            "1969-Corona衛星影像" : Taiwan_Corona_1969,
-            "1904日治臺灣堡圖(明治版)-1:20000" : JM20K_1904,
-            "1921日治臺灣堡圖(大正版)-1:20000" : JM20K_1921,
-            "1921日治地形圖-1:25,000" : JM25K_1921
+            "1969-Corona衛星影像" : Taiwan_Corona_1969
             
 
         };
@@ -168,8 +171,11 @@
             {
             "段籍圖" : LANDSECT,
             "公有土地" : LAND_OPENDATA,
-            "國土利用調查成果" : LUIMAP
-        
+            "國土利用調查成果" : LUIMAP,
+            "1904日治臺灣堡圖(明治版)-1:20000" : JM20K_1904,
+            "1921日治臺灣堡圖(大正版)-1:20000" : JM20K_1921,
+            "1921日治地形圖-1:25,000" : JM25K_1921
+            
             },
             "環境圖層":
             {
@@ -190,10 +196,19 @@
             
         };
         
-       
-
         L.control.groupedLayers(baseLayers, groupOverLays).addTo(map);
 
+         // add Geocoder
+         L.Control.geocoder({
+        position: 'topleft',
+        collapsed: false,
+        placeholder: 'Search...',
+        defaultMarkGeocode: true
+        }).addTo(map);  
+
+        //leaflet-locate control
+        L.control.locate().addTo(map);
+        
         // Fullscreen
         map.addControl(new L.Control.Fullscreen());
 
@@ -213,6 +228,9 @@
             minimized: true,
             position: 'bottomright'
         }).addTo(map);
+
+       
+
         </script>
 </body>
 </html>
