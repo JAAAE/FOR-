@@ -12,9 +12,7 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
 
-    <!-- Grouped Layer Plugin: https://github.com/ismyrnow/leaflet-groupedlayercontrol  -->
-    <link rel="stylesheet" href="https://stephsaephan.github.io/leaflet-map-example/CSS/leaflet.groupedlayercontrol.min.css">
-    <script src="https://stephsaephan.github.io/leaflet-map-example/JS/leaflet.groupedlayercontrol.min.js" type="text/javascript"></script>
+    
     <!--add leaflet-locatecontrol-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://jaaae.github.io/leaflet_learning/plugin/leaflet.locationcontrol/L.Control.Locate.min.css" />
@@ -35,6 +33,10 @@
     <link rel="stylesheet" href="https://davicustodio.github.io/Leaflet.StyledLayerControl/css/styledLayerControl.css" />
     <script src="https://davicustodio.github.io/Leaflet.StyledLayerControl/src/styledLayerControl.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.css" />
+    
     <style>
         #body {
         margin: 0px;
@@ -66,6 +68,11 @@
     <div id="map"></div>
 
         <script>
+        Swal.fire({
+        title: '軟橋參考地圖',
+        text: 'This web map is for field trip, education, leisure and so on. Have a good day!',
+        })
+
         var Orthophoto = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                          attribution: " <a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"}),
 
