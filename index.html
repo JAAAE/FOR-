@@ -1,5 +1,10 @@
 <html lang="zh-tw">
-    
+
+ 測試中!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   
+
 <head>
     <meta charset="UTF-8">
     <!-- responsive view-->
@@ -30,7 +35,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-
+    <link rel="stylesheet" href="http://davicustodio.github.io/Leaflet.StyledLayerControl/css/styledLayerControl.css" />
+    <script src="http://davicustodio.github.io/Leaflet.StyledLayerControl/src/styledLayerControl.js"></script>
 
     <style>
         #body {
@@ -152,55 +158,82 @@
             
         });
 
-        var baseLayers = {
-            "OSM" : OpenStreetMap_Mapnik,
-            "臺灣通用電子地圖" : EMAP,
-            "正射影像" : Orthophoto,
-            "正射影像_混合" : Orthophoto_mix,
-            "Google 衛星" : googleSat,
-            "1966-Corona衛星影像" : Taiwan_Corona_1966,
-            "1969-Corona衛星影像" : Taiwan_Corona_1969
-            
+        var baseMaps = [
+			                { 
+                                groupName : "底圖",
+								expanded : true,
+								layers    : {
+                                    "OSM" : OpenStreetMap_Mapnik,
+                                    "臺灣通用電子地圖" : EMAP,
+									"正射影像" : Orthophoto,
+									"正射影像_混合"  : Orthophoto_mix,
+                                    "Google map" : googleSat,
+                                    "1966-Corona衛星影像" : Taiwan_Corona_1966,
+                                    "1969-Corona衛星影像" : Taiwan_Corona_1969
+                                    
+								
+                                
+					
+								}
+					        }
+                                   
+								
+                            /*, {
+							    groupName : "Bing Base Maps",
+								layers    : {
+									"Satellite" : bing1,
+									"Road"      : bing2
+							  }
+                            } */							
+			];
+					
+			var overlays = [
+							 {
+								groupName : "Sao Paulo",
+								expanded : true,
+								layers    : { 
+									"12" : MUDSLIDE_PG,
+									"13"  : MUDSLIDE
+								}	
+                             }, {
+								groupName : "Rio de Janeiro",
+								expanded : true,
+								layers    : { 
+									"14"     : Dislope,
+									"15" 	 : SensitiveArea,
+									"16"	 : irr_channel		
+								}	
+                             }, {
+								groupName : "Belo Horizonte",
+								layers    : { 
+									"21"	: TOWN	
+								}	
+                             }							 
+			];
+			
+			// configure StyledLayerControl options for the layer soybeans_sp
+			irr_channel.StyledLayerControl = {
+				removable : true,
+				visible : false
+			}
 
-        };
-
-        var groupOverLays = {
-            "行政區":
-            {
-            "縣市界" : CITY,
-            "鄉鎮市區界" : TOWN,
-            "村里界" : Village201910
-            },
-            "土地圖層":
-            {
-            "段籍圖" : LANDSECT,
-            "公有土地" : LAND_OPENDATA,
-            "國土利用調查成果" : LUIMAP,
-            "1904日治臺灣堡圖(明治版)-1:20000" : JM20K_1904,
-            "1921日治臺灣堡圖(大正版)-1:20000" : JM20K_1921,
-            "1921日治地形圖-1:25,000" : JM25K_1921
-            
-            },
-            "環境圖層":
-            {
-            "五萬分之一地質圖" : Geology_50000,
-            "shadow_20" : S_20,
-            "飲用水水源水質保護區" : D_water_prot_area,
-            "農田水利會渠道圖" : irr_channel
-
-            },
-            "災害潛勢圖層":
-            {
-            "山崩地滑敏感區" : SensitiveArea,
-            "順向坡" : Dislope,
-            "土石流潛勢溪流" : MUDSLIDE,
-            "土石流潛勢溪流影響範圍" : MUDSLIDE_PG
-            
-            }
-            
-        };
-        
-        L.control.groupedLayers(baseLayers, groupOverLays).addTo(map);
+			// configure the visible attribute with true to corn_bh
+			SensitiveArea.StyledLayerControl = {
+				removable : false,
+				visible : true
+			}
+			
+			var options = {
+				container_width 	: "300px",
+				group_maxHeight     : "80px",
+				//container_maxHeight : "350px", 
+				exclusive       	: false,
+				collapsed : true, 
+				position: 'topright'
+			};
+		
+		    var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+			map.addControl(control);
 
          // add Geocoder
          L.Control.geocoder({
