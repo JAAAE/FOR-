@@ -233,6 +233,15 @@
 		    var control = L.Control.styledLayerControl(baseMaps, overlays, options);
 			map.addControl(control);
 
+            //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
+            if (!L.Browser.touch) {
+            L.DomEvent
+            .disableClickPropagation(control._container)
+            .disableScrollPropagation(control._container);
+            } else {
+            L.DomEvent.disableClickPropagation(control._container);
+            }
+
          // add Geocoder
          L.Control.geocoder({
         position: 'topleft',
