@@ -70,7 +70,7 @@
         <script>
         Swal.fire({
         title: '軟橋參考地圖',
-        text: 'This web map is for field trip, education, leisure and so on. Have a good day!',
+        text: 'This web map is for field trip. Have a good day!',
         })
 
         var Orthophoto = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}", {
@@ -194,39 +194,45 @@
 					
 			var overlays = [
 							 {
-								groupName : "Sao Paulo",
+								groupName : "行政區",
 								expanded : true,
 								layers    : { 
-									"12" : MUDSLIDE_PG,
-									"13"  : MUDSLIDE
+									"縣市界" : CITY,
+									"鄉鎮市界"  : TOWN,
+                                    "村里界" : Village201910
 								}	
                              }, {
-								groupName : "Rio de Janeiro",
-								expanded : true,
+								groupName : "土地圖層",
 								layers    : { 
-									"14"     : Dislope,
-									"15" 	 : SensitiveArea,
-									"16"	 : irr_channel		
+									"段籍圖"     : LANDSECT,
+									"公有土地" 	 : LAND_OPENDATA,
+									"國土利用調查成果" : LUIMAP,
+                                    "1904日治臺灣堡圖(明治版)-1:20000"	 : JM20K_1904,
+                                    "1921日治臺灣堡圖(大正版)-1:20000"   : JM20K_1921,
+                                    "1921日治地形圖-1:25,000"            : JM25K_1921
+
 								}	
                              }, {
-								groupName : "Belo Horizonte",
+								groupName : "環境圖層",
 								layers    : { 
-									"21"	: TOWN	
+									"五萬分之一地質圖" : Geology_50000,
+                                    "shadow_20" : S_20,
+                                    "飲用水水源水質保護區" : D_water_prot_area,
+                                    "農田水利會渠道圖" : irr_channel
 								}	
-                             }							 
+                             }, {
+                                groupName : "災害潛勢圖層",
+								layers    : { 
+                                    "山崩地滑敏感區" : SensitiveArea,
+                                    "順向坡" : Dislope,
+                                    "土石流潛勢溪流" : MUDSLIDE,
+                                    "土石流潛勢溪流影響範圍" : MUDSLIDE_PG
+            
+                                }
+                             }						 
 			];
 			
-			// configure StyledLayerControl options for the layer soybeans_sp
-			irr_channel.StyledLayerControl = {
-				removable : true,
-				visible : false
-			}
-
-			// configure the visible attribute with true to corn_bh
-			SensitiveArea.StyledLayerControl = {
-				removable : false,
-				visible : true
-			}
+			
 			
 			var options = {
 				container_width 	: "300px",
