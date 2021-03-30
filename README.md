@@ -16,7 +16,7 @@ https://jaaae.github.io/FOR_Ruanqiao/.
 
 + [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 
-+ [verflow scrolling for large numbers of group members on mobile devices](https://github.com/davicustodio/Leaflet.StyledLayerControl/issues/11)
++ [overflow scrolling for large numbers of group members on mobile devices](https://github.com/davicustodio/Leaflet.StyledLayerControl/issues/11)
 
 
 
