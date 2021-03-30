@@ -12,6 +12,10 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
 
+     <!-- add geo geocoder-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
     
     <!--add leaflet-locatecontrol-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -26,10 +30,6 @@
     <link rel="stylesheet" href="https://stephsaephan.github.io/leaflet-map-example/CSS/Control.MiniMap.css">
     <script src="https://stephsaephan.github.io/leaflet-map-example/JS/Control.MiniMap.min.js" type="text/javascript"></script>
     
-    <!-- add geo geocoder-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
     <!-- add Leaflet.StyledLayerControl-->
     <link rel="stylesheet" href="https://davicustodio.github.io/Leaflet.StyledLayerControl/css/styledLayerControl.css" />
     <script src="https://davicustodio.github.io/Leaflet.StyledLayerControl/src/styledLayerControl.js"></script>
@@ -257,38 +257,38 @@
             L.DomEvent.disableClickPropagation(control._container);
             }
 
-         // add Geocoder
-         L.Control.geocoder({
-        position: 'topleft',
-        collapsed: false,
-        placeholder: 'Search...',
-        defaultMarkGeocode: true
-        }).addTo(map);  
+             // add Geocoder
+            L.Control.geocoder({
+            position: 'topleft',
+            collapsed: false,
+            placeholder: 'Search...',
+            defaultMarkGeocode: true
+            }).addTo(map);  
 
-        //leaflet-locate control
-        L.control.locate().addTo(map);
+            // Fullscreen
+            map.addControl(new L.Control.Fullscreen());
         
-        // Fullscreen
-        map.addControl(new L.Control.Fullscreen());
+            //leaflet-locate control
+            L.control.locate().addTo(map);
 
-        //add Scale
-        L.control.scale({
-            metric: true,
-            imperial: false,
-            position: 'bottomleft'
-        }).addTo(map);
+            //add Scale
+            L.control.scale({
+             metric: true,
+                imperial: false,
+                position: 'bottomleft'
+            }).addTo(map);
 
-        // Overview mini map
-        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-        });
-        var miniMap = new L.Control.MiniMap(Esri_WorldTopoMap, {
-            toggleDisplay: true,
-            minimized: false,
-            position: 'bottomright',
-            height :100,
-            width : 100
-        }).addTo(map);
+            // Overview mini map
+            var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+            });
+            var miniMap = new L.Control.MiniMap(Esri_WorldTopoMap, {
+                toggleDisplay: true,
+                minimized: false,
+                position: 'bottomright',
+                height :100,
+                width : 100
+            }).addTo(map);
 
        
 
