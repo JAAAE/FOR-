@@ -7,7 +7,7 @@
     <!-- responsive view-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>軟橋地圖</title>
+    <title>FOR軟橋</title>
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
@@ -18,9 +18,9 @@
 
     
     <!--add leaflet-locatecontrol-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@1.7.1/dist/L.Control.Locate.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@1.7.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://jaaae.github.io/leaflet_learning/plugin/leaflet.locationcontrol/L.Control.Locate.min.css" />
+    <script src="https://jaaae.github.io/leaflet_learning/plugin/leaflet.locationcontrol/L.Control.Locate.js"></script>
 
     <!--add fullscreen-->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -135,7 +135,7 @@
             irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
                          attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
             
-            SensitiveArea =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}", {
+            SensitiveArea =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}.png", {
                          attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",}),
 
             Dislope =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/Dislope/GoogleMapsCompatible/{z}/{x}/{y}.png", {
