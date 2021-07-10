@@ -8,8 +8,6 @@ https://jaaae.github.io/FOR_Ruanqiao/.
 
 + [leaflet-locatecontrol](https://github.com/domoritz/leaflet-locatecontrol)
 
-+ [Leaflet.fullscreen](https://github.com/Leaflet/Leaflet.fullscreen) 
-
 + [Leaflet-MiniMap](https://github.com/Norkart/Leaflet-MiniMap)
 
 + [Leaflet-control-geocoder]( https://github.com/perliedman/leaflet-control-geocoder)
