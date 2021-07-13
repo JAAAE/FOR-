@@ -38,7 +38,8 @@
     <!--add Leaflet-compass-->
     <link rel="stylesheet" href="https://jaaae.github.io/leaflet_learning/plugin/leaflet.compass/leaflet-compass.min.css" />
     <script src="https://jaaae.github.io/leaflet_learning/plugin/leaflet.compass/leaflet-compass.min.js"></script>
-
+    
+    <!--add Leaflet-Coordinates-Control-->
     <link rel="stylesheet" href="https://www.zimmi.cz/Leaflet-Coordinates-Control/Control.Coordinates.css" />
     <script src="https://www.zimmi.cz/Leaflet-Coordinates-Control/Control.Coordinates.js"></script>
     
@@ -327,6 +328,7 @@
             //加入指北針
             map.addControl( new L.Control.Compass({position: 'topleft'}) );
 
+            //Leaflet-Coordinates-Control
             var c = new L.Control.Coordinates(); 
 
                 c.addTo(map);
