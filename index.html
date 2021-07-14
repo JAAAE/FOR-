@@ -89,7 +89,7 @@
             Orthophoto_mix = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                          attribution: " <a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>" }), 
 
-            googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3'],
+            googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3'],
                          attribution: "<a href='https://zh.wikipedia.org/wiki/Google%E5%9C%B0%E5%9B%BE' target='_blank'>Google Maps</a>"}),
 
             OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,
