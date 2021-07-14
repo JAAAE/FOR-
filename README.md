@@ -1,6 +1,6 @@
 # Map_For_FieldTrip
 
-### demo: 
+### Link: 
 https://jaaae.github.io/Map_For_FieldTrip/
 
 ### Reference:
