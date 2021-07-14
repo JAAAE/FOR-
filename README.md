@@ -12,9 +12,9 @@ https://jaaae.github.io/FOR_Ruanqiao/.
 
 + [Leaflet-control-geocoder]( https://github.com/perliedman/leaflet-control-geocoder)
 
-+[leaflet-compass](https://github.com/stefanocudini/leaflet-compass)
++ [leaflet-compass](https://github.com/stefanocudini/leaflet-compass)
 
-+[Leaflet-Coordinates-Control](https://github.com/zimmicz/Leaflet-Coordinates-Control)
++ [Leaflet-Coordinates-Control](https://github.com/zimmicz/Leaflet-Coordinates-Control)
 
 + [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 
