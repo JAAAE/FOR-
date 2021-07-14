@@ -1,7 +1,7 @@
 # Map_For_FieldTrip
 
 ### demo: 
-https://jaaae.github.io/FOR_Ruanqiao/.
+https://jaaae.github.io/Map_For_FieldTrip/
 
 ### Reference:
 + [Leaflet.StyledLayerControl](https://github.com/davicustodio/Leaflet.StyledLayerControl)
