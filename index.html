@@ -7,7 +7,7 @@
     <!-- responsive view-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>FOR軟橋</title>
+    <title>考察地圖</title>
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
@@ -76,7 +76,11 @@
         <script>
         Swal.fire({
         title: '考察地圖',
-        text: 'This web map is for field trip. Have a good day!',
+        text: '這是一個簡易的考察地圖，將定位、指北針以及加入各項的自然、人文類公開圖層放在一個地圖內，免去繁雜的檢索。',
+        imageUrl: 'https://i.imgur.com/AXFObj2.png',
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
         })
 
         var Orthophoto = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}", {
