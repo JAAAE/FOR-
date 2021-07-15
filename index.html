@@ -42,6 +42,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.css" />
     
+
+
     
 
     <style>
@@ -74,6 +76,7 @@
     <div id="map"></div>
 
         <script>
+            
         Swal.fire({
         title: '考察地圖',
         html: '一個簡易的考察地圖。功能包括：<b>地方檢索</b>、<b>定位</b>、<b>指北針</b>、<b>統整政府的各種圖層</b>。',
@@ -141,7 +144,10 @@
                          attribution: "<a href='https://npgis.cpami.gov.tw/newpublic/' target='_blank'>臺灣國家公園生物多樣性</a>"}),
                   
             Natural_Reserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer', {format: 'img/png',transparent: true, layers: "20",
-                         attribution: "<a href='https://npgis.cpami.gov.tw/newpublic/' target='_blank'>臺灣國家公園生物多樣性</a>"}),             
+                         attribution: "<a href='https://npgis.cpami.gov.tw/newpublic/' target='_blank'>臺灣國家公園生物多樣性</a>"}),          
+
+            Imperative_Wetland = L.tileLayer.wms('http://giss.tcd.gov.tw/tcdmap/services/WebService/WETLANDS_OF_IMPORTANCE/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
+                         attribution: "<a href='https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>國家重要濕地保育計畫網</a>"}),              
 
             irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
                          attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
@@ -214,8 +220,7 @@
                                     
                                    
                                     
-                                    
-                                    
+                        
 								}	
                              }, {
 								groupName : "環境圖層",
@@ -224,6 +229,7 @@
 									"五萬分之一地質圖" : Geology_50000,
                                     "自然保護區" : Natural_Conserve,
                                     "自然保留區" : Natural_Reserve,
+                                    "國家重要濕地" :Imperative_Wetland,
                                     "飲用水水源水質保護區" : D_water_prot_area,
                                     "農田水利會渠道圖" : irr_channel,
 								}	
@@ -341,7 +347,8 @@
                     c.setCoordinates(e);
             });
 
-                   
+            
+            
         </script>
 </body>
 </html>
