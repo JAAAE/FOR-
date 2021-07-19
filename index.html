@@ -37,13 +37,14 @@
     <link rel="stylesheet" href="https://www.zimmi.cz/Leaflet-Coordinates-Control/Control.Coordinates.css" />
     <script src="https://www.zimmi.cz/Leaflet-Coordinates-Control/Control.Coordinates.js"></script>
     
+   <!--add measure-->
+   <link rel="stylesheet" href="https://jaaae.github.io/leaflet_learning/plugin/Leaflet.measure/leaflet.measure.css"/>
+   <script src="https://jaaae.github.io/leaflet_learning/plugin/Leaflet.measure/leaflet.measure.js"></script>
+
     <!-- add sweetalert2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.css" />
-    
-
-
     
 
     <style>
@@ -335,6 +336,11 @@
             map.on('click', onMapClick);
             */
 
+            // leaflet-measure
+            L.control.measure({
+            position: 'topleft'
+            }).addTo(map)
+           
             //加入指北針
             map.addControl( new L.Control.Compass({position: 'topleft'}) );
 
@@ -346,8 +352,8 @@
                 map.on('click', function(e) {
                     c.setCoordinates(e);
             });
-
             
+
             
         </script>
 </body>
