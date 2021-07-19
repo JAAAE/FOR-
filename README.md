@@ -14,6 +14,8 @@ https://jaaae.github.io/Map_For_FieldTrip/
 
 + [leaflet-compass](https://github.com/stefanocudini/leaflet-compass)
 
++ [leaflet-measure](https://github.com/aprilandjan/leaflet.measure)
+
 + [Leaflet-Coordinates-Control](https://github.com/zimmicz/Leaflet-Coordinates-Control)
 
 + [sweetalert2](https://github.com/sweetalert2/sweetalert2)
