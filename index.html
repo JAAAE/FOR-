@@ -153,7 +153,7 @@
             irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
                          attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
 
-            dfff = L.tileLayer.wms('https://gis.mine.gov.tw/MineMaps_AutoUpdate/simpleWMS.aspx', {format: 'img/png',transparent: true, layers: "1",
+            dfff = L.tileLayer.wms('https://gis.mine.gov.tw/MineMaps_AutoUpdate/simpleWMS.aspx', {format: 'img/png',transparent: true, layers: "MineArea",
                          attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
             SensitiveArea =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}.png", {
                          attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",}),
