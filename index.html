@@ -131,6 +131,9 @@
 
             LUIMAP =  L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LUIMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                          attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"}),
+                         
+            Incineratorarea = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "10",
+                         attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"}),
 
             Geology_50000 =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/gm50000/GoogleMapsCompatible/{z}/{x}/{y}", {
                          attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>"}),
@@ -140,6 +143,8 @@
 
             D_water_prot_area = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "3",
                          attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"}),
+            
+            
 
             Natural_Conserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer', {format: 'img/png',transparent: true, layers: "19",
                          attribution: "<a href='https://npgis.cpami.gov.tw/newpublic/' target='_blank'>臺灣國家公園生物多樣性</a>"}),
@@ -148,13 +153,14 @@
                          attribution: "<a href='https://npgis.cpami.gov.tw/newpublic/' target='_blank'>臺灣國家公園生物多樣性</a>"}),          
 
             Imperative_Wetland = L.tileLayer.wms('http://giss.tcd.gov.tw/tcdmap/services/WebService/WETLANDS_OF_IMPORTANCE/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
-                         attribution: "<a href='https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>國家重要濕地保育計畫網</a>"}),              
+                         attribution: "<a href='https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>國家重要濕地保育計畫網</a>"}),     
+
+            BASIN = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "BASIN",
+                         attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"}),          
 
             irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer', {format: 'img/png',transparent: true, layers: "0",
                          attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
 
-            dfff = L.tileLayer.wms('https://gis.mine.gov.tw/MineMaps_AutoUpdate/simpleWMS.aspx', {format: 'img/png',transparent: true, layers: "MineArea",
-                         attribution: "<a href='https://agridata.coa.gov.tw/open_detail.aspx?id=C89' target='_blank'>行政院農委會</a>"}),
             SensitiveArea =  L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}.png", {
                          attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",}),
 
@@ -220,7 +226,8 @@
 								layers    : { 
 									"公有土地" 	 : LAND_OPENDATA,
 									"國土利用調查成果" : LUIMAP,
-                                    "asas":dfff,
+                                    "焚化爐廠區範圍" : Incineratorarea,
+                                    
 								
                                     
                                    
@@ -230,6 +237,7 @@
                              }, {
 								groupName : "環境圖層",
 								layers    : { 
+                                    "河川流域範圍" :BASIN,
                                     "shadow_20" : S_20,
 									"五萬分之一地質圖" : Geology_50000,
                                     "自然保護區" : Natural_Conserve,
