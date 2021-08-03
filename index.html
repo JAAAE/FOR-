@@ -50,6 +50,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="src/L.Geoserver.js"></script>
 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="src/L.TileLayer.BetterWMS.js"></script>
+
+
     <style>
         #body {
         margin: 0px;
@@ -186,7 +190,7 @@
             MUDSLIDE_PG =  L.tileLayer("https://wmts.nlsc.gov.tw/wmts/MUDSLIDE_PG/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                          attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"});
           
-            River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {layers: "tiger:河道_全台河流_1904_WGS84	",transparent:true,
+            River_1904 = L.tileLayer.betterWms("http://localhost:8080/geoserver/wms", {layers: "tiger:河道_全台河流_1904_WGS84",transparent:true,format: 'image/png',
                          attribution:"臺師大地形室"});
             
             
@@ -200,7 +204,9 @@
             layers:[OpenStreetMap_Mapnik]
 
         });
-    
+
+
+        
 
         var baseMaps = [
 			                { 
@@ -388,7 +394,7 @@
             });
             
             
-            
+                
            
 
         </script>
