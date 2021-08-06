@@ -47,12 +47,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.5/sweetalert2.css" />
 
     <!--add geoserver-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="src/L.Geoserver.js"></script>
 
+    <!--add leaflet.markercluster-->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
 
-
-
+    
+    
     <style>
         #body {
         margin: 0px;
@@ -193,6 +196,7 @@
                          attribution:"臺師大地形室"});
             
             
+            
 
                          
 
@@ -288,7 +292,8 @@
 									"鄉鎮市界"  : TOWN,
                                     "村里界" : Village201910,
                                     "段籍圖" : LANDSECT,
-            
+                                    
+                                                
                                 }
                              },			 
 			];
@@ -393,9 +398,30 @@
             });
             
             
-                
+           //加入口罩特約藥局位置(JSON)
+            fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                var geojson = L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                    layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
+                    }
+                });
+                //加入cluster(藥局)
+                var clusters = L.markerClusterGroup();
+                clusters.addLayer(geojson);
+                map.addLayer(clusters);
+            });
            
-
+            
+          
+           
+            
+              
+            
         </script>
 </body>
 </html>
