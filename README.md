@@ -18,6 +18,10 @@ https://jaaae.github.io/Map_For_FieldTrip/
 
 + [Leaflet-Coordinates-Control](https://github.com/zimmicz/Leaflet-Coordinates-Control)
 
++ [LeafletLeaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster)
+
++ [leaflet-ajax](https://github.com/calvinmetcalf/leaflet-ajax)
+
 + [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 
 + [overflow scrolling for large numbers of group members on mobile devices](https://github.com/davicustodio/Leaflet.StyledLayerControl/issues/11)
