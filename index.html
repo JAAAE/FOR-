@@ -198,7 +198,7 @@
             River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {layers: "tiger:河道_全台河流_1904_WGS84",transparent:true,format: 'image/png',
                          attribution:"臺師大地形室"});
 
-            第三種方法(Leaflet.AJAX) 
+            //第三種方法(Leaflet.AJAX) 
             marker =  new L.markerClusterGroup(
                 geojsonLayer = new L.GeoJSON.AJAX("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json",{onEachFeature: function(feature,layer){
                     layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
