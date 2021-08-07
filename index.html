@@ -53,7 +53,8 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     
-
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src='https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js'></script>
     
     
     <style>
@@ -194,10 +195,23 @@
           
             River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {layers: "tiger:河道_全台河流_1904_WGS84",transparent:true,format: 'image/png',
                          attribution:"臺師大地形室"});
-            
-            
-            
 
+            //第三種方法(Leaflet.AJAX)
+            marker =  new L.markerClusterGroup(
+                geojsonLayer = new L.GeoJSON.AJAX("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json",{onEachFeature: function(feature,layer){
+                    layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
+                    }
+                }),    
+                // Creating the markers 
+                geojsonLayer.on('data:loaded', function () { 
+                    // Add the cluster data after the geojson layer has loaded.
+                    marker.addLayer(geojsonLayer);
+                    //map.addLayer(marker); 就是它，害我疑惑好久為何圖層會預設顯示!!!!!
+                })
+            );
+            
+                
+            
                          
 
         var map = L.map('map', {
@@ -250,6 +264,9 @@
 									"公有土地" 	 : LAND_OPENDATA,
 									"國土利用調查成果" : LUIMAP,
                                     "焚化爐廠區範圍" : Incineratorarea,
+                                 
+                                    
+                                    
                                     
                                     
 								
@@ -283,6 +300,7 @@
                                     "順向坡" : Dislope,
                                     "土石流潛勢溪流" : MUDSLIDE,
                                     "土石流潛勢溪流影響範圍" : MUDSLIDE_PG,
+                                    "sfs" :marker,
             
                                 }
                              }, {	
@@ -292,6 +310,7 @@
 									"鄉鎮市界"  : TOWN,
                                     "村里界" : Village201910,
                                     "段籍圖" : LANDSECT,
+                                    
                                     
                                                 
                                 }
@@ -311,6 +330,9 @@
 		
 		    var control = L.Control.styledLayerControl(baseMaps, overlays, options);
 			map.addControl(control);
+            
+
+
 
             //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
             if (!L.Browser.touch) {
@@ -398,28 +420,37 @@
             });
             
             
-           //加入口罩特約藥局位置(JSON)
-            fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                console.log(data);
-                var geojson = L.geoJSON(data, {
-                    onEachFeature: function (feature, layer) {
-                    layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
-                    }
-                });
-                //加入cluster(藥局)
-                var clusters = L.markerClusterGroup();
-                clusters.addLayer(geojson);
-                map.addLayer(clusters);
-            });
-           
+        //加入口罩特約藥局位置(JSON)
+        // fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
+        // .then(function(response) {
+        //     return response.json();
+        // })
+        // .then(function(data) {
+        //     console.log(data);
+        //     var geojson = L.geoJSON(data, {
+        //         onEachFeature: function (feature, layer) {
+        //         layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
+        //         }
+        //     });
+        //     //加入cluster(藥局)
+        //     var clusters = L.markerClusterGroup();
+        //     clusters.addLayer(geojson);
+        //     map.addLayer(clusters);
+        // });
+
+        //第二種方法(iquery)
+        // function addDataToMap(data, map) {
+        // var dataLayer = L.geoJson(data);
+        // var clusters = L.markerClusterGroup();
+        // clusters.addLayer(dataLayer);
+        // map.addLayer(clusters);
+        // }
+        // $.getJSON("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json", function(data) { addDataToMap(data, map); });
             
-          
-           
-            
+       
+        
+        
+        
               
             
         </script>
