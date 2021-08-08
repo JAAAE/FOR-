@@ -57,7 +57,7 @@
    
     <!--leaflet-ajax-->
     <script src='https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js'></script>
-    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     
     <style>
         #body {
@@ -66,15 +66,33 @@
         }
         html,
         body,
-
         #map {
         height: 100%;
         width: 100%;
         margin: 0px;
+        z-index: 1;
        
         }
 
+        .coordinate {
+            position:absolute;
+            z-index: 2;
+            padding:10px;
+            opacity: 10;
+            padding: 8px 5px;
+            background-color:white;
+            top:80%;
+            left:8px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow:rgba(0,0,0,0.5);
+            font-size: 5px;
         
+
+
+
+
+        }
         
 
 
@@ -88,7 +106,7 @@
 <body>
     <div class="coordinate"></div>
     <div id="map"></div>
-
+    
         <script>
             
         Swal.fire({
@@ -454,13 +472,17 @@
         // $.getJSON("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json", function(data) { addDataToMap(data, map); });
             
        
+        // test
+        // L.marker([23.5,121.2],{opacity:0.5}).addTo(map)
+        // .on('click', function(e) {console.log(e.latlng)})
+        // .bindPopup("hey 這個很好玩喔喔喔喔喔")
+        // .openPopup();
         
-        L.marker([23.5,121.2],{opacity:0.5}).addTo(map)
-        .on('click', function(e) {console.log(e.latlng)})
-        .bindPopup("hey 這個很好玩喔喔喔喔喔")
-        .openPopup();
-
-    
+        //當mousemove，顯示座標(text)
+        map.on('mousemove',function(e) {
+            console.log(e)
+            $('.coordinate').html(`<b>Lat</b>：${e.latlng.lat.toFixed(2)} </br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
+        });
 
 
         
