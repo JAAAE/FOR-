@@ -73,6 +73,7 @@
         margin: 0px;
        
         }
+
         
         
 
@@ -85,7 +86,7 @@
 
 
 <body>
-
+    <div class="coordinate"></div>
     <div id="map"></div>
 
         <script>
@@ -202,7 +203,7 @@
             marker =  new L.markerClusterGroup(
                 geojsonLayer = new L.GeoJSON.AJAX("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json",{onEachFeature: function(feature,layer){
                     layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
-                    }
+                    console.log(feature)}//於瀏覽器開發者工具中載入資料
                 }),    
                 // Creating the markers 
                 geojsonLayer.on('data:loaded', function () { 
@@ -211,9 +212,8 @@
                     //map.addLayer(marker); 就是它，害我疑惑好久為何圖層會預設顯示!!!!!
                 })
             );
-            
+           
    
-            
              
               
            
@@ -455,7 +455,12 @@
             
        
         
-        
+        L.marker([23.5,121.2],{title:"hey 我是羅XX ㄎㄎ",opacity:0.5}).addTo(map)
+        .on('click', function(e) {console.log(e.latlng)})
+
+    
+
+
         
               
             
