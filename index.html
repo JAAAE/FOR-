@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
    
     <!--leaflet-ajax-->
     <script src='https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js'></script>
@@ -481,7 +481,7 @@
         //當mousemove，顯示座標(text)
         map.on('mousemove',function(e) {
             console.log(e)
-            $('.coordinate').html(`<b>Lat</b>：${e.latlng.lat.toFixed(2)} </br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
+            $('.coordinate').html(`<span style="color:red;"> 測試中 <span></br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} </br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
         });
 
 
