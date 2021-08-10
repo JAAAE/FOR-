@@ -529,7 +529,7 @@
         //當mousemove，顯示座標(test)
         map.on('mousemove', function (e) {
             console.log(e)
-            $('.coordinate').html(`<span style="color:red;"> 測試中 <span></br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} </br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
+            $('.coordinate').html(`<span style="color:red;font-weight:bold;"> 測試中 </span><br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} <br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
         });
 
 
