@@ -71,22 +71,21 @@
         width: 100%;
         margin: 0px;
         z-index: 1;
-       
+        
         }
 
         .coordinate {
-            position:absolute;
-            z-index: 2;
-            padding:10px;
-            opacity: 10;
-            padding: 8px 5px;
-            background-color:white;
-            top:80%;
-            left:8px;
-            height: auto;
-            border-radius: 5px;
-            box-shadow:rgba(0,0,0,0.5);
-            font-size: 5px;
+        position:absolute;
+        z-index: 2;
+        opacity: 10;
+        padding: 8px 5px;
+        background-color:white;
+        top:79%;
+        left:8px;
+        height: auto;
+        border-radius: 5px;
+        box-shadow:rgba(0,0,0,0.5);
+        font-size: 5px;
         
 
 
@@ -478,7 +477,7 @@
         // .bindPopup("hey 這個很好玩喔喔喔喔喔")
         // .openPopup();
         
-        //當mousemove，顯示座標(text)
+        //當mousemove，顯示座標(test)
         map.on('mousemove',function(e) {
             console.log(e)
             $('.coordinate').html(`<span style="color:red;"> 測試中 <span></br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} </br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
