@@ -79,7 +79,8 @@
 
         }
 
-        .coordinate {
+        .coordinate,
+        .clock  {
             position: absolute;
             z-index: 2;
             opacity: 10;
@@ -91,10 +92,18 @@
             border-radius: 5px;
             box-shadow: rgba(0, 0, 0, 0.5);
             font-size: 5px;
+        }
 
-
-
-
+        #clock {
+            z-index: 3;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            top:75%;
+            left:93.3%;
+            text-align: center;
+            font-size: 1px;
+            padding: 3px 2px;
+            border-radius: 5px;
 
         }
     </style>
@@ -103,8 +112,10 @@
 
 
 <body>
+    <div id="clock"></div>
     <div class="coordinate"></div>
     <div id="map"></div>
+    
 
     <script>
 
@@ -531,6 +542,38 @@
             console.log(e)
             $('.coordinate').html(`<span style="color:red;font-weight:bold;"> 測試中 </span><br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} <br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
         });
+
+        console.log("This is clock.js");
+        //加入時鐘（參考：https://codepen.io/googoldkhan/pen/ZEKqzpb)
+        function updateClock() {
+
+        let currentTime = new Date();
+
+        
+        let currentHour = currentTime.getHours();
+        let currentMinutes = currentTime.getMinutes();
+        let currentSeconds = currentTime.getSeconds();
+
+        
+        currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+        currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+        
+        let timeOfDay = currentHour < 12 ? "AM" : "PM";
+
+        
+        currentHour = currentHour > 12 ? currentHour - 12 : currentHour;
+        currentHour = currentHour == 0 ? 12 : currentHour;
+
+        
+        let currentTimeStr =
+            currentHour + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+
+        document.getElementById("clock").innerHTML = `<h1>${currentTimeStr}</h1>`;
+        }
+
+        setInterval(updateClock, 1000);
 
 
 
