@@ -75,14 +75,14 @@
         html,
         body,
         #map {
-            height: 92vh;
+            height: 90vh;
             width: 100%;
             margin: 0px;
             z-index: 1;
 
         }
 
-        .coordinate,
+        /* .coordinate,
         .clock  {
             position: absolute;
             z-index: 2;
@@ -106,16 +106,21 @@
             text-align: center;
             font-size: 1px;
             padding: 3px 2px;
-            border-radius: 5px;
+            border-radius: 5px; 
+        
+        
 
-        }
+        }*/
+        
+
+        
     </style>
 
 </head>
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#6b99bf;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#6b99bf ;">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">考察地圖</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,11 +149,13 @@
           </div>
         </div>
       </nav>
+      
 
   
     <div id="clock"></div>
     <div class="coordinate"></div>
-    <div id="map"></div>
+    <div id="map"></div> 
+    
     
 
     <script>
@@ -575,12 +582,13 @@
         // .openPopup();
 
         //當mousemove，顯示座標(test)
-        map.on('mousemove', function (e) {
-            console.log(e)
-            $('.coordinate').html(`<span style="color:red;font-weight:bold;"> 測試中 </span><br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} <br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
-        });
+        // map.on('mousemove', function (e) {
+        //     console.log(e)
+        //     $('.coordinate').html(`<span style="color:red;font-weight:bold;"> 測試中 </span><br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} <br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
+        // });
 
-        console.log("This is clock.js");
+
+        // console.log("This is clock.js");
         //加入時鐘（參考：https://codepen.io/googoldkhan/pen/ZEKqzpb)
         // function updateClock()  {
 
