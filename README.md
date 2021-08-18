@@ -26,6 +26,8 @@ https://jaaae.github.io/Map_For_FieldTrip/
 
 + [overflow scrolling for large numbers of group members on mobile devices](https://github.com/davicustodio/Leaflet.StyledLayerControl/issues/11)
 
++ [Bootstrap](https://getbootstrap.com/)
+
 
 
 
