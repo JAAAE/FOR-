@@ -152,20 +152,24 @@
                         <a class="nav-link"  onclick="fireSweetAlert()" style="cursor: pointer ;">地圖簡介</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="https://github.com/JAAAE" target="_blank">Github</a>
+                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/index.html" target="_blank">地圖程式碼</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md" target="_blank">參考資料</a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
+                            更多資訊
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="https://github.com/JAAAE" target="_blank">My GitHub</a>
+                            <li><a class="dropdown-item" href="https://github.com/JAAAE" target="_blank">Github</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445"
-                                    target="_blank">My Facebook</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445" target="_blank">Facebook</a>
+                            </li>
+                       
+                            
                         </ul>
                     </li>
                 </ul>
@@ -339,10 +343,10 @@
                 attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
             });
 
-            River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
-                layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
-                attribution: "臺師大地形室"
-            });
+            // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
+            //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
+            //     attribution: "臺師大地形室"
+            // });
 
         //第三種方法(Leaflet.AJAX) 
         marker = new L.markerClusterGroup(
@@ -431,7 +435,7 @@
             }, {
                 groupName: "環境圖層",
                 layers: {
-                    "1904年河川（臺灣堡圖）(TEST)": River_1904,
+                    // "1904年河川（臺灣堡圖）(TEST)": River_1904,
                     "河川流域範圍": BASIN,
                     "水庫蓄水範圍": ressub,
                     "農田水利會渠道圖": irr_channel,
