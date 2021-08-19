@@ -224,6 +224,18 @@
                 attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
             }),
 
+            B25000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B25000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+            }),
+
+            B50000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B50000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+            }),
+
+            B5000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B5000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+            }),
+
             Taiwan_Corona_1966 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=Taiwan_Corona_1966-jpg-{z}-{x}-{y}', {
                 attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
             }),
@@ -387,6 +399,9 @@
                 layers: {
                     "OSM": OpenStreetMap_Mapnik,
                     "臺灣通用電子地圖": EMAP,
+                    "1/5000基本地形圖":B5000,
+                    "1/25000 經建版地形圖":B25000,
+                    "1/50000 經建版地形圖":B50000,
                     "正射影像": Orthophoto,
                     "正射影像_混合": Orthophoto_mix,
                     "Google map": googleSat,
