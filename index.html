@@ -68,14 +68,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
-        
+
     <style>
-      
         #body,
         html {
             margin: 0px;
             padding: 0px;
-            
+
 
         }
 
@@ -85,8 +84,8 @@
             width: 100%;
             margin: 0px;
             padding-top: 9vh;
-           
-            
+
+
 
 
         }
@@ -149,13 +148,15 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link"  onclick="fireSweetAlert()" style="cursor: pointer ;">地圖簡介</a>
+                        <a class="nav-link" onclick="fireSweetAlert()" style="cursor: pointer ;">地圖簡介</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/index.html" target="_blank">地圖程式碼</a>
+                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/index.html"
+                            target="_blank">地圖程式碼</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md" target="_blank">參考資料</a>
+                        <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md"
+                            target="_blank">參考資料</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -166,10 +167,11 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="https://github.com/JAAAE" target="_blank">Github</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445" target="_blank">Facebook</a>
+                            <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445"
+                                    target="_blank">Facebook</a>
                             </li>
-                       
-                            
+
+
                         </ul>
                     </li>
                 </ul>
@@ -355,10 +357,10 @@
                 attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
             });
 
-            // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
-            //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
-            //     attribution: "臺師大地形室"
-            // });
+        // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
+        //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
+        //     attribution: "臺師大地形室"
+        // });
 
         //第三種方法(Leaflet.AJAX) 
         marker = new L.markerClusterGroup(
@@ -399,9 +401,9 @@
                 layers: {
                     "OSM": OpenStreetMap_Mapnik,
                     "臺灣通用電子地圖": EMAP,
-                    "1/5000基本地形圖":B5000,
-                    "1/25000 經建版地形圖":B25000,
-                    "1/50000 經建版地形圖":B50000,
+                    "1/5000基本地形圖": B5000,
+                    "1/25000 經建版地形圖": B25000,
+                    "1/50000 經建版地形圖": B50000,
                     "正射影像": Orthophoto,
                     "正射影像_混合": Orthophoto_mix,
                     "Google map": googleSat,
@@ -632,7 +634,7 @@
         //     $('.coordinate').html(`<span style="color:red;font-weight:bold;"> 測試中 </span><br> <b>Lat</b>：${e.latlng.lat.toFixed(2)} <br> <b>Lng</b>：${e.latlng.lng.toFixed(2)}`)
         // });
 
-            
+
 
 
         // console.log("This is clock.js");
