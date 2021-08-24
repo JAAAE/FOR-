@@ -254,6 +254,10 @@
                 attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
             }),
 
+            HOST_MAP_20m = L.tileLayer('https://storage.geodac.tw/Tile/v2/SWCBProject/Taiwan_Rmap_20m/{z}/{y}/{x}.jpg', {
+                attribution: "<a href='https://tech.swcb.gov.tw/Results/ResultsRedMap' target='_blank'>農委會水保局</a>"
+            }),
+
             Village201910 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/Village201910/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                 attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
             }),
@@ -411,6 +415,9 @@
                     "1969-Corona衛星影像": Taiwan_Corona_1969,
                     "1904日治臺灣堡圖(明治版)-1:20K": JM20K_1904,
                     "1921日治臺灣堡圖(大正版)-1:20K": JM20K_1921,
+                    "shadow_20": S_20,
+                    "HOST地圖_20m":HOST_MAP_20m,
+                
 
 
 
@@ -456,7 +463,6 @@
                     "河川流域範圍": BASIN,
                     "水庫蓄水範圍": ressub,
                     "農田水利會渠道圖": irr_channel,
-                    "shadow_20": S_20,
                     "五萬分之一地質圖": Geology_50000,
                     "自然保護區": Natural_Conserve,
                     "自然保留區": Natural_Reserve,
