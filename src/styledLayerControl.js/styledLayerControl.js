@@ -1,4 +1,3 @@
-//Copyright (c) 2020 Tek Kshetri
 L.Control.StyledLayerControl = L.Control.Layers.extend({
     options: {
         collapsed: true,

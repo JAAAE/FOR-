@@ -1,3 +1,6 @@
+//Copyright 2012 (c) David Leaver
+
+
 export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
 	options: L.Icon.prototype.options,
 

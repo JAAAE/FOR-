@@ -1,3 +1,6 @@
+//Copyright (c) 2020 Tek Kshetri
+
+
 L.Geoserver = L.FeatureGroup.extend({
   //Some of the default options
   options: {
