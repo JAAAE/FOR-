@@ -151,27 +151,23 @@
             right: 0;
             content: ' ';
             background: rgba(0, 0, 0, .5);
-            z-index:10000000
+            z-index: 10000000
         }
 
         #imageDiv {
-            z-index:10000000;
-            
-            text-align:center;
+            z-index: 10000000;
+
+            text-align: center;
             align-items: center;
             justify-content: center;
             position: relative;
             top: 50vh;
             left: 50vw;
             transform: translate(-50%, -50%);
-           
-            
+
+
 
         }
-
-
-        
-       
     </style>
 
 </head>
@@ -187,16 +183,18 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" onclick="fireSweetAlert()" style="cursor: pointer ;"data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" >地圖簡介</a>
+                    <a class="nav-link" onclick="fireSweetAlert()" style="cursor: pointer ;" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">地圖簡介</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md" 
+                    <a class="nav-link " href="https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md"
                         target="_blank" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">參考資料</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " onclick="showPopup()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" target="_blank">地圖操作介紹</a>
+                    <a class="nav-link " onclick="showPopup()" style="cursor: pointer" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show" target="_blank">地圖操作介紹</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -735,6 +733,15 @@
 
 
 
+    </script>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7WYSPEWJL"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-L7WYSPEWJL');
     </script>
 </body>
 
