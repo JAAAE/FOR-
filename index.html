@@ -184,8 +184,15 @@
             }
         }
 
-        #click_close {
-            size: 50px;
+            p {
+            font-size: 20px;
+            left:50vw;
+            top:50vh;
+            color:rgba(255, 0, 0, 0.7);
+            font-weight: bold;
+            position:absolute;
+            transform: translate(-50%, -50%);
+
 
 
         }
@@ -193,10 +200,10 @@
 
 </head>
 
-<!--放在body外面-->
+<!--Boostrap放在body外面-->
 <nav class="navbar navbar-expand-lg navbar-dark Fixed-top " style="background-color:rgb(83, 89, 102) ;">
     <div class="container-fluid">
-        <a class="navbar-brand ;" style="font-weight:400;" href="#">考察地圖</a>
+        <a class="navbar-brand ;" style="font-weight:400;" href="https://github.com/JAAAE/Map_For_FieldTrip" target="_blank">考察地圖</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -249,16 +256,20 @@
 
     <div id="map"></div>
 
+    <!-- 加入地圖操作介紹 -->
     <div class="popup">
+        
         <div class="blocker" onclick="hidePopup()">
-           
+
             <div id="imageDesktop">
                 <img width=80%  src="https://i.imgur.com/wZ6MuDU.jpg">
             </div>
             <div id="imageMobile">
                 <img width=80% src="https://i.imgur.com/RUTsi0d.jpg">
             </div>
-            <div id="click_close">點選任意處關閉</div>
+            <p>點選任意處關閉</p>
+
+            
         </div>
 
         <script>
@@ -269,9 +280,6 @@
             function hidePopup() {
                 popup.classList.remove('open');
             }
-
-            // document.getElementById('imageDiv').innerHTML = '<img width=80% " align=center src="https://i.imgur.com/qDFbcR8.jpg">';
-
 
 
             function fireSweetAlert() {
