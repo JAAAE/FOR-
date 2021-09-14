@@ -154,17 +154,38 @@
             z-index: 10000000
         }
 
-        #imageDiv {
-            z-index: 10000000;
-
+        #imageMobile {
+            display: block;
             text-align: center;
-            align-items: center;
-            justify-content: center;
             position: relative;
             top: 50vh;
             left: 50vw;
             transform: translate(-50%, -50%);
+            
+        }
 
+        #imageDesktop {
+            display: none;
+
+        }
+
+        @media (min-width:992px) {
+            #imageMobile {
+                display: none;
+            }
+
+            #imageDesktop {
+                display: block;
+                text-align: center;
+                position: relative;
+                top: 50vh;
+                left: 50vw;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        #click_close {
+            size: 50px;
 
 
         }
@@ -230,274 +251,280 @@
 
     <div class="popup">
         <div class="blocker" onclick="hidePopup()">
-            <div id="imageDiv"></div>
+           
+            <div id="imageDesktop">
+                <img width=80%  src="https://i.imgur.com/wZ6MuDU.jpg">
+            </div>
+            <div id="imageMobile">
+                <img width=80% src="https://i.imgur.com/RUTsi0d.jpg">
+            </div>
+            <div id="click_close">點選任意處關閉</div>
         </div>
-    </div>
 
-    <script>
-        const popup = document.querySelector('.popup');
-        function showPopup() {
-            popup.classList.add('open');
-        }
-        function hidePopup() {
-            popup.classList.remove('open');
-        }
+        <script>
+            const popup = document.querySelector('.popup');
+            function showPopup() {
+                popup.classList.add('open');
+            }
+            function hidePopup() {
+                popup.classList.remove('open');
+            }
 
-        document.getElementById('imageDiv').innerHTML = '<img width=80% " align=center src="https://i.imgur.com/qDFbcR8.jpg">';
-
+            // document.getElementById('imageDiv').innerHTML = '<img width=80% " align=center src="https://i.imgur.com/qDFbcR8.jpg">';
 
 
-        function fireSweetAlert() {
-            Swal.fire({
-                title: '考察地圖',
-                html: '一個簡易的考察地圖。功能包括：<b>地方檢索</b>、<b>定位</b>、<b>指北針</b>、<b>統整政府的各種圖層</b>。',
-                imageUrl: 'https://i.imgur.com/AXFObj2.png',
-                imageWidth: 200,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-            })
-        }
 
-        var Orthophoto = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-            attribution: " <a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-        }),
+            function fireSweetAlert() {
+                Swal.fire({
+                    title: '考察地圖',
+                    html: '一個簡易的考察地圖。功能包括：<b>地方檢索</b>、<b>定位</b>、<b>指北針</b>、<b>統整政府的各種圖層</b>。',
+                    imageUrl: 'https://i.imgur.com/AXFObj2.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            }
 
-            Orthophoto_mix = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+            var Orthophoto = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                 attribution: " <a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
             }),
 
-            googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-                maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                attribution: "<a href='https://zh.wikipedia.org/wiki/Google%E5%9C%B0%E5%9B%BE' target='_blank'>Google Maps</a>"
-            }),
+                Orthophoto_mix = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: " <a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap'
-            }),
+                googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+                    maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                    attribution: "<a href='https://zh.wikipedia.org/wiki/Google%E5%9C%B0%E5%9B%BE' target='_blank'>Google Maps</a>"
+                }),
 
-            EMAP = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap'
+                }),
 
-            B25000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B25000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                EMAP = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            B50000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B50000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                B25000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B25000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            B5000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B5000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                B50000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B50000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            Taiwan_Corona_1966 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=Taiwan_Corona_1966-jpg-{z}-{x}-{y}', {
-                attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
-            }),
+                B5000 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/B5000/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            Taiwan_Corona_1969 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=Taiwan_Corona_1969-jpg-{z}-{x}-{y}', {
-                attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
-            }),
+                Taiwan_Corona_1966 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=Taiwan_Corona_1966-jpg-{z}-{x}-{y}', {
+                    attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
+                }),
 
-            JM20K_1904 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1904-jpg-{z}-{x}-{y}', {
-                attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
-            }),
+                Taiwan_Corona_1969 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=Taiwan_Corona_1969-jpg-{z}-{x}-{y}', {
+                    attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
+                }),
 
-            JM20K_1921 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1921-jpg-{z}-{x}-{y}', {
-                attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
-            }),
+                JM20K_1904 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1904-jpg-{z}-{x}-{y}', {
+                    attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
+                }),
 
-            HOST_MAP_20m = L.tileLayer('https://storage.geodac.tw/Tile/v2/SWCBProject/Taiwan_Rmap_20m/{z}/{y}/{x}.jpg', {
-                attribution: "<a href='https://tech.swcb.gov.tw/Results/ResultsRedMap' target='_blank'>農委會水保局</a>"
-            }),
+                JM20K_1921 = L.tileLayer('https://gis.sinica.edu.tw/tileserver/file-exists.php?img=JM20K_1921-jpg-{z}-{x}-{y}', {
+                    attribution: "<a href='http://gissrv4.sinica.edu.tw/gis/twhgis/' target='_blank'>中央研究院</a>"
+                }),
 
-            Village201910 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/Village201910/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                HOST_MAP_20m = L.tileLayer('https://storage.geodac.tw/Tile/v2/SWCBProject/Taiwan_Rmap_20m/{z}/{y}/{x}.jpg', {
+                    attribution: "<a href='https://tech.swcb.gov.tw/Results/ResultsRedMap' target='_blank'>農委會水保局</a>"
+                }),
 
-            TOWN = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/TOWN/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                Village201910 = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/Village201910/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            CITY = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/CITY/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                TOWN = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/TOWN/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            LANDSECT = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LANDSECT/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                CITY = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/CITY/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            LAND_OPENDATA = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LAND_OPENDATA/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                LANDSECT = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LANDSECT/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            LUIMAP = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LUIMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                LAND_OPENDATA = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LAND_OPENDATA/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            Incineratorarea = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "10",
-                attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"
-            }),
+                LUIMAP = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LUIMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
 
-            Geology_50000 = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/gm50000/GoogleMapsCompatible/{z}/{x}/{y}", {
-                attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>"
-            }),
+                Incineratorarea = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "10",
+                    attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"
+                }),
 
-            S_20 = L.tileLayer('https://landslide.geologycloud.tw/jlwmts/jetlink/Shadw20/GoogleMapsCompatible/{z}/{x}/{y}', {
-                attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",
-            }),
+                Geology_50000 = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/gm50000/GoogleMapsCompatible/{z}/{x}/{y}", {
+                    attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>"
+                }),
 
-            D_water_prot_area = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "3",
-                attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"
-            }),
+                S_20 = L.tileLayer('https://landslide.geologycloud.tw/jlwmts/jetlink/Shadw20/GoogleMapsCompatible/{z}/{x}/{y}', {
+                    attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",
+                }),
 
-            Natural_Conserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
-                format: 'img/png', transparent: true, layers: "19",
-                attribution: "<a href='https://www.forest.gov.tw/ target='_blank'>農委會林務局</a>"
-            }),
+                D_water_prot_area = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "3",
+                    attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"
+                }),
 
-            Natural_Reserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
-                format: 'img/png', transparent: true, layers: "20",
-                attribution: "<a href='https://www.forest.gov.tw/' target='_blank'>農委會林務局</a>"
-            }),
+                Natural_Conserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
+                    format: 'img/png', transparent: true, layers: "19",
+                    attribution: "<a href='https://www.forest.gov.tw/ target='_blank'>農委會林務局</a>"
+                }),
 
-            Imperative_Wetland = L.tileLayer.wms('http://giss.tcd.gov.tw/tcdmap/services/WebService/WETLANDS_OF_IMPORTANCE/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "0",
-                attribution: "<a href='https://www.tcd.gov.tw/index.php#slide-1' target='_blank'>內政部營建署城鄉發展分署</a>"
-            }),
+                Natural_Reserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
+                    format: 'img/png', transparent: true, layers: "20",
+                    attribution: "<a href='https://www.forest.gov.tw/' target='_blank'>農委會林務局</a>"
+                }),
 
-            BASIN = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "BASIN",
-                attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
-            }),
+                Imperative_Wetland = L.tileLayer.wms('http://giss.tcd.gov.tw/tcdmap/services/WebService/WETLANDS_OF_IMPORTANCE/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "0",
+                    attribution: "<a href='https://www.tcd.gov.tw/index.php#slide-1' target='_blank'>內政部營建署城鄉發展分署</a>"
+                }),
 
-            Salinizationzone = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "Salinizationzone",
-                attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
-            }),
+                BASIN = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "BASIN",
+                    attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
+                }),
 
-            ressub = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "ressub",
-                attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
-            }),
+                Salinizationzone = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "Salinizationzone",
+                    attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
+                }),
 
-            gwconare = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "gwconare",
-                attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
-            }),
+                ressub = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "ressub",
+                    attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
+                }),
 
-            gwconare2 = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "gwconare2",
-                attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
-            }),
+                gwconare = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "gwconare",
+                    attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
+                }),
 
-            irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer?', {
-                format: 'img/png', transparent: true, layers: "0",
-                attribution: "<a href='https://data.gov.tw/dataset/45224' target='_blank'>行政院農委會</a>"
-            }),
+                gwconare2 = L.tileLayer.wms('https://maps.wra.gov.tw/arcgis/services/WMS/GIC_WMS/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "gwconare2",
+                    attribution: "<a href='https://gic.wra.gov.tw/Gis/https://wetland-tw.tcd.gov.tw/tw/index.php' target='_blank'>水利地理資訊服務平台</a>"
+                }),
 
-            SensitiveArea = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}.png", {
-                attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",
-            }),
+                irr_channel = L.tileLayer.wms('https://irrggis.aerc.org.tw/arcgis/services/WMS/OpenData/MapServer/WMSServer?', {
+                    format: 'img/png', transparent: true, layers: "0",
+                    attribution: "<a href='https://data.gov.tw/dataset/45224' target='_blank'>行政院農委會</a>"
+                }),
 
-            Dislope = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/Dislope/GoogleMapsCompatible/{z}/{x}/{y}.png", {
-                attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>"
-            }),
+                SensitiveArea = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/SensitiveArea/GoogleMapsCompatible/{z}/{x}/{y}.png", {
+                    attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>",
+                }),
 
-            MUDSLIDE = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/MUDSLIDE/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
-            }),
+                Dislope = L.tileLayer("https://landslide.geologycloud.tw/jlwmts/jetlink/Dislope/GoogleMapsCompatible/{z}/{x}/{y}.png", {
+                    attribution: "<a href='https://landslide.geologycloud.tw/swagger/api-docs/api' target='_blank'>地調所山崩雲</a>"
+                }),
 
-            MUDSLIDE_PG = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/MUDSLIDE_PG/default/GoogleMapsCompatible/{z}/{y}/{x}", {
-                attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                MUDSLIDE = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/MUDSLIDE/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
+
+                MUDSLIDE_PG = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/MUDSLIDE_PG/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                });
+
+            // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
+            //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
+            //     attribution: "臺師大地形室"
+            // });
+
+            //第三種方法(Leaflet.AJAX) 
+            marker = new L.markerClusterGroup(
+                geojsonLayer = new L.GeoJSON.AJAX("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json", {
+                    onEachFeature: function (feature, layer) {
+                        layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>" + "<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
+                        console.log(feature)
+                    }//於瀏覽器開發者工具中載入資料
+                }),
+                // Creating the markers 
+                geojsonLayer.on('data:loaded', function () {
+                    // Add the cluster data after the geojson layer has loaded.
+                    marker.addLayer(geojsonLayer);
+                    //map.addLayer(marker); 就是它，害我疑惑好久為何圖層會預設顯示!!!!!
+                })
+            );
+
+
+
+
+
+
+            var map = L.map('map', {
+                center: [24.695258, 121.100705],
+                zoom: 15,
+                zoomControl: false, //false -> remove default zoom control
+                layers: [OpenStreetMap_Mapnik]
+
             });
 
-        // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
-        //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
-        //     attribution: "臺師大地形室"
-        // });
-
-        //第三種方法(Leaflet.AJAX) 
-        marker = new L.markerClusterGroup(
-            geojsonLayer = new L.GeoJSON.AJAX("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json", {
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>" + "<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
-                    console.log(feature)
-                }//於瀏覽器開發者工具中載入資料
-            }),
-            // Creating the markers 
-            geojsonLayer.on('data:loaded', function () {
-                // Add the cluster data after the geojson layer has loaded.
-                marker.addLayer(geojsonLayer);
-                //map.addLayer(marker); 就是它，害我疑惑好久為何圖層會預設顯示!!!!!
-            })
-        );
 
 
 
-
-
-
-        var map = L.map('map', {
-            center: [24.695258, 121.100705],
-            zoom: 15,
-            zoomControl: false, //false -> remove default zoom control
-            layers: [OpenStreetMap_Mapnik]
-
-        });
+            var baseMaps = [
+                {
+                    groupName: "底圖",
+                    expanded: true,
+                    layers: {
+                        "OSM": OpenStreetMap_Mapnik,
+                        "臺灣通用電子地圖": EMAP,
+                        "1/5000基本地形圖": B5000,
+                        "1/25000 經建版地形圖": B25000,
+                        "1/50000 經建版地形圖": B50000,
+                        "正射影像": Orthophoto,
+                        "正射影像_混合": Orthophoto_mix,
+                        "Google map": googleSat,
+                        "1966-Corona衛星影像": Taiwan_Corona_1966,
+                        "1969-Corona衛星影像": Taiwan_Corona_1969,
+                        "1904日治臺灣堡圖(明治版)-1:20K": JM20K_1904,
+                        "1921日治臺灣堡圖(大正版)-1:20K": JM20K_1921,
+                        "shadow_20": S_20,
+                        "HOST地圖_20m": HOST_MAP_20m,
 
 
 
 
-        var baseMaps = [
-            {
-                groupName: "底圖",
-                expanded: true,
-                layers: {
-                    "OSM": OpenStreetMap_Mapnik,
-                    "臺灣通用電子地圖": EMAP,
-                    "1/5000基本地形圖": B5000,
-                    "1/25000 經建版地形圖": B25000,
-                    "1/50000 經建版地形圖": B50000,
-                    "正射影像": Orthophoto,
-                    "正射影像_混合": Orthophoto_mix,
-                    "Google map": googleSat,
-                    "1966-Corona衛星影像": Taiwan_Corona_1966,
-                    "1969-Corona衛星影像": Taiwan_Corona_1969,
-                    "1904日治臺灣堡圖(明治版)-1:20K": JM20K_1904,
-                    "1921日治臺灣堡圖(大正版)-1:20K": JM20K_1921,
-                    "shadow_20": S_20,
-                    "HOST地圖_20m": HOST_MAP_20m,
+                    }
+                },
 
 
 
+                /*, {
+                    groupName : "Bing Base Maps",
+                    layers    : {
+                        "Satellite" : bing1,
+                        "Road"      : bing2
+                  }
+                } */
+            ];
 
-                }
-            },
+            var overlays = [
 
-
-
-            /*, {
-                groupName : "Bing Base Maps",
-                layers    : {
-                    "Satellite" : bing1,
-                    "Road"      : bing2
-              }
-            } */
-        ];
-
-        var overlays = [
-
-            {
-                groupName: "土地使用圖層",
-                layers: {
-                    "公有土地": LAND_OPENDATA,
-                    "國土利用調查成果": LUIMAP,
-                    "焚化爐廠區範圍": Incineratorarea,
-                    "口罩特約藥局(TEST)": marker,
+                {
+                    groupName: "土地使用圖層",
+                    layers: {
+                        "公有土地": LAND_OPENDATA,
+                        "國土利用調查成果": LUIMAP,
+                        "焚化爐廠區範圍": Incineratorarea,
+                        "口罩特約藥局(TEST)": marker,
 
 
 
@@ -509,148 +536,148 @@
 
 
 
-                }
-            }, {
-                groupName: "環境圖層",
-                layers: {
-                    // "1904年河川（臺灣堡圖）(TEST)": River_1904,
-                    "河川流域範圍": BASIN,
-                    "水庫蓄水範圍": ressub,
-                    "農田水利會渠道圖": irr_channel,
-                    "五萬分之一地質圖": Geology_50000,
-                    "自然保護區": Natural_Conserve,
-                    "自然保留區": Natural_Reserve,
-                    "國家重要濕地": Imperative_Wetland,
-                    "飲用水水源水質保護區": D_water_prot_area,
-                    "海水入侵與地下水鹽化區": Salinizationzone,
-                    "地下水第一級管制區": gwconare,
-                    "地下水第二級管制區": gwconare2,
+                    }
+                }, {
+                    groupName: "環境圖層",
+                    layers: {
+                        // "1904年河川（臺灣堡圖）(TEST)": River_1904,
+                        "河川流域範圍": BASIN,
+                        "水庫蓄水範圍": ressub,
+                        "農田水利會渠道圖": irr_channel,
+                        "五萬分之一地質圖": Geology_50000,
+                        "自然保護區": Natural_Conserve,
+                        "自然保留區": Natural_Reserve,
+                        "國家重要濕地": Imperative_Wetland,
+                        "飲用水水源水質保護區": D_water_prot_area,
+                        "海水入侵與地下水鹽化區": Salinizationzone,
+                        "地下水第一級管制區": gwconare,
+                        "地下水第二級管制區": gwconare2,
 
-                }
-            }, {
-                groupName: "災害潛勢圖層",
-                layers: {
-                    "山崩地滑敏感區": SensitiveArea,
-                    "順向坡": Dislope,
-                    "土石流潛勢溪流": MUDSLIDE,
-                    "土石流潛勢溪流影響範圍": MUDSLIDE_PG,
-
-
-                }
-            }, {
-                groupName: "行政區、地籍界",
-                layers: {
-                    "縣市界": CITY,
-                    "鄉鎮市界": TOWN,
-                    "村里界": Village201910,
-                    "段籍圖": LANDSECT,
+                    }
+                }, {
+                    groupName: "災害潛勢圖層",
+                    layers: {
+                        "山崩地滑敏感區": SensitiveArea,
+                        "順向坡": Dislope,
+                        "土石流潛勢溪流": MUDSLIDE,
+                        "土石流潛勢溪流影響範圍": MUDSLIDE_PG,
 
 
-
-                }
-            },
-        ];
+                    }
+                }, {
+                    groupName: "行政區、地籍界",
+                    layers: {
+                        "縣市界": CITY,
+                        "鄉鎮市界": TOWN,
+                        "村里界": Village201910,
+                        "段籍圖": LANDSECT,
 
 
 
-        var options = {
-            container_width: "250px",
-            group_maxHeight: "80px",
-            //container_maxHeight : "350px", 
-            exclusive: false,
-            collapsed: true,
-            position: 'topright'
-        };
-
-        var control = L.Control.styledLayerControl(baseMaps, overlays, options);
-        map.addControl(control);
+                    }
+                },
+            ];
 
 
 
-        //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
-        if (!L.Browser.touch) {
-            L.DomEvent
-                .disableClickPropagation(control._container)
-                .disableScrollPropagation(control._container);
-        } else {
-            L.DomEvent.disableClickPropagation(control._container);
-        }
+            var options = {
+                container_width: "250px",
+                group_maxHeight: "80px",
+                //container_maxHeight : "350px", 
+                exclusive: false,
+                collapsed: true,
+                position: 'topright'
+            };
 
-        // add Geocoder
-        L.Control.geocoder({
-            position: 'topleft',
-            collapsed: false,
-            placeholder: 'Search...',
-            defaultMarkGeocode: true
-        }).addTo(map);
+            var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+            map.addControl(control);
 
-        //leaflet-locate control
-        L.control.locate().addTo(map);
 
-        //add Scale
-        L.control.scale({
-            metric: true,
-            imperial: false,
-            position: 'bottomleft'
-        }).addTo(map);
 
-        // Overview mini map
-        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-        });
-        var miniMap = new L.Control.MiniMap(Esri_WorldTopoMap, {
-            toggleDisplay: true,
-            minimized: false,
-            position: 'bottomright',
-            height: 80,
-            width: 80
-        }).addTo(map);
+            //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
+            if (!L.Browser.touch) {
+                L.DomEvent
+                    .disableClickPropagation(control._container)
+                    .disableScrollPropagation(control._container);
+            } else {
+                L.DomEvent.disableClickPropagation(control._container);
+            }
 
-        map.locate({ setView: true, maxZoom: 16 });
+            // add Geocoder
+            L.Control.geocoder({
+                position: 'topleft',
+                collapsed: false,
+                placeholder: 'Search...',
+                defaultMarkGeocode: true
+            }).addTo(map);
 
-        //function onLocationFound(e) {
-        //    var radius = e.accuracy;
+            //leaflet-locate control
+            L.control.locate().addTo(map);
 
-        //    L.marker(e.latlng).addTo(map)
-        //    .bindPopup("You are within " + radius + " meters from this point").openPopup();
+            //add Scale
+            L.control.scale({
+                metric: true,
+                imperial: false,
+                position: 'bottomleft'
+            }).addTo(map);
 
-        //    L.circle(e.latlng, radius).addTo(map);
-        // }
+            // Overview mini map
+            var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+            });
+            var miniMap = new L.Control.MiniMap(Esri_WorldTopoMap, {
+                toggleDisplay: true,
+                minimized: false,
+                position: 'bottomright',
+                height: 80,
+                width: 80
+            }).addTo(map);
 
-        // map.on('locationfound', onLocationFound)
+            map.locate({ setView: true, maxZoom: 16 });
 
-        /*
-       //點一下得到經緯度  
-        const popup = L.popup();
-        function onMapClick(e) {
-        let lat = e.latlng.lat.toFixed(2); // 緯度 至小數點第二位
-        let lng = e.latlng.lng.toFixed(2); // 經度 至小數點第二位
-        
-        popup
-            .setLatLng(e.latlng)
-            .setContent(`緯度：${lat}°<br/>經度：${lng}°`)
-            .openOn(map);
-        }
-        map.on('click', onMapClick);
-        */
+            //function onLocationFound(e) {
+            //    var radius = e.accuracy;
 
-        // leaflet-measure
-        L.control.measure({
-            position: 'topleft',
-            lineColor: 'red'
-        }).addTo(map)
+            //    L.marker(e.latlng).addTo(map)
+            //    .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-        //加入指北針
-        map.addControl(new L.Control.Compass({ position: 'topleft' }));
+            //    L.circle(e.latlng, radius).addTo(map);
+            // }
 
-        //Leaflet-Coordinates-Control
-        var c = new L.Control.Coordinates();
+            // map.on('locationfound', onLocationFound)
 
-        c.addTo(map);
+            /*
+           //點一下得到經緯度  
+            const popup = L.popup();
+            function onMapClick(e) {
+            let lat = e.latlng.lat.toFixed(2); // 緯度 至小數點第二位
+            let lng = e.latlng.lng.toFixed(2); // 經度 至小數點第二位
+            
+            popup
+                .setLatLng(e.latlng)
+                .setContent(`緯度：${lat}°<br/>經度：${lng}°`)
+                .openOn(map);
+            }
+            map.on('click', onMapClick);
+            */
 
-        map.on('click', function (e) {
-            c.setCoordinates(e);
-        });
+            // leaflet-measure
+            L.control.measure({
+                position: 'topleft',
+                lineColor: 'red'
+            }).addTo(map)
+
+            //加入指北針
+            map.addControl(new L.Control.Compass({ position: 'topleft' }));
+
+            //Leaflet-Coordinates-Control
+            var c = new L.Control.Coordinates();
+
+            c.addTo(map);
+
+            map.on('click', function (e) {
+                c.setCoordinates(e);
+            });
 
 
         //加入口罩特約藥局位置(JSON)
@@ -733,16 +760,16 @@
 
 
 
-    </script>
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7WYSPEWJL"></script>
+        </script>
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7WYSPEWJL"></script>
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-L7WYSPEWJL');
-    </script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-L7WYSPEWJL');
+        </script>
 </body>
 
 </html>
