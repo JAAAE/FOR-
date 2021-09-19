@@ -22,6 +22,8 @@ https://jaaae.github.io/Map_For_FieldTrip/
 
 + [leaflet-ajax](https://github.com/calvinmetcalf/leaflet-ajax)
 
++ [Leaflet.EasyButton](https://github.com/CliffCloud/Leaflet.EasyButton)
+
 + [sweetalert2](https://github.com/sweetalert2/sweetalert2)
 
 + [overflow scrolling for large numbers of group members on mobile devices](https://github.com/davicustodio/Leaflet.StyledLayerControl/issues/11)
