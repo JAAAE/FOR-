@@ -69,6 +69,10 @@
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
 
+    <!-- EasyButton -->
+    <link rel="stylesheet" href="src/easy-button.css" />
+    <script src="src/easy-button.js"></script>
+
     <style>
         html {
             margin: 0px;
@@ -161,7 +165,7 @@
             top: 50vh;
             left: 50vw;
             transform: translate(-50%, -50%);
-            
+
         }
 
         #imageDesktop {
@@ -186,14 +190,12 @@
 
         p {
             font-size: 20px;
-            left:50vw;
-            top:50vh;
-            color:rgba(255, 0, 0, 0.5);
+            left: 50vw;
+            top: 50vh;
+            color: rgba(255, 0, 0, 0.5);
             font-weight: bold;
-            position:absolute;
+            position: absolute;
             transform: translate(-50%, -50%);
-
-
 
         }
     </style>
@@ -201,15 +203,16 @@
 </head>
 
 <!--Boostrap放在body外面-->
-<nav class="navbar navbar-expand-lg navbar-dark Fixed-top " style="background-color:rgb(83, 89, 102) ;">
+<nav class="navbar navbar-expand-lg navbar-dark Fixed-top  " style="background-color:rgb(83, 89, 102) ;">
     <div class="container-fluid">
-        <a class="navbar-brand ;" style="font-weight:400;" href="https://github.com/JAAAE/Map_For_FieldTrip" target="_blank">考察地圖</a>
+        <a class="navbar-brand ;" style="font-weight:400;" href="https://github.com/JAAAE/Map_For_FieldTrip"
+            target="_blank">考察地圖</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav  ">
                 <li class="nav-item">
                     <a class="nav-link" onclick="fireSweetAlert()" style="cursor: pointer ;" data-bs-toggle="collapse"
                         data-bs-target=".navbar-collapse.show">地圖簡介</a>
@@ -220,9 +223,12 @@
                         data-bs-target=".navbar-collapse.show" target="_blank">地圖操作介紹</a>
                 </li>
 
+                <!-- window.open的方法，可以實現「_blank」的效果。 -->
                 <li class="nav-item">
-                    <a class="nav-link " onClick="window.open('https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md')" 
-                    style="cursor: pointer " target="_blank" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"  >參考資料</a>
+                    <a class="nav-link "
+                        onClick="window.open('https://github.com/JAAAE/Map_For_FieldTrip/blob/main/README.md')"
+                        style="cursor: pointer " target="_blank" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">參考資料</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -231,13 +237,14 @@
                         更多資訊
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="https://github.com/JAAAE" target="_blank">Github</a>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/JAAAE" target="_blank">Github</a>
                         </li>
-                        <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445"
+
+                        <li>
+                            <a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100000375866445"
                                 target="_blank">Facebook</a>
                         </li>
-
-
                     </ul>
                 </li>
             </ul>
@@ -250,29 +257,30 @@
 
 <body>
 
-
     <!-- <div id="clock"></div> -->
     <!-- <div class="coordinate"></div> -->
 
     <div id="map"></div>
 
+
     <!-- 加入地圖操作介紹 -->
     <div class="popup">
-        
+
         <div class="blocker" onclick="hidePopup()">
 
             <div id="imageDesktop">
-                <img width=80%  src="https://i.imgur.com/wZ6MuDU.jpg">
+                <img width=80% src="https://i.imgur.com/M1s4dMA.jpg">
             </div>
             <div id="imageMobile">
-                <img width=80% src="https://i.imgur.com/RUTsi0d.jpg">
+                <img width=80% src="https://i.imgur.com/EPB7zkY.jpg">
             </div>
             <p>點選任意處關閉</p>
+    </div>
 
-            
-        </div>
+
 
         <script>
+
             const popup = document.querySelector('.popup');
             function showPopup() {
                 popup.classList.add('open');
@@ -474,8 +482,6 @@
 
 
 
-
-
             var map = L.map('map', {
                 center: [24.695258, 121.100705],
                 zoom: 15,
@@ -483,8 +489,6 @@
                 layers: [OpenStreetMap_Mapnik]
 
             });
-
-
 
 
             var baseMaps = [
@@ -506,10 +510,6 @@
                         "1921日治臺灣堡圖(大正版)-1:20K": JM20K_1921,
                         "shadow_20": S_20,
                         "HOST地圖_20m": HOST_MAP_20m,
-
-
-
-
                     }
                 },
 
@@ -533,16 +533,6 @@
                         "國土利用調查成果": LUIMAP,
                         "焚化爐廠區範圍": Incineratorarea,
                         "口罩特約藥局(TEST)": marker,
-
-
-
-
-
-
-
-
-
-
 
                     }
                 }, {
@@ -587,7 +577,6 @@
             ];
 
 
-
             var options = {
                 container_width: "250px",
                 group_maxHeight: "80px",
@@ -599,8 +588,6 @@
 
             var control = L.Control.styledLayerControl(baseMaps, overlays, options);
             map.addControl(control);
-           
-
 
 
             //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
@@ -688,6 +675,22 @@
                 c.setCoordinates(e);
             });
 
+         
+            //用L.easyButton結合Leaflet.StyledLayerControl達到一健刪除疊圖圖層功能
+            L.easyButton('<span class="star">&cross;</span>', function () {
+                control.unSelectGroup("土地使用圖層"),
+                control.unSelectGroup("環境圖層"),
+                control.unSelectGroup("災害潛勢圖層"),
+                control.unSelectGroup("行政區、地籍界")}, 
+                
+                //hover show text
+                '刪除套疊圖層',
+                {
+                position: 'topright',
+                },
+                
+            ).addTo(map);
+            
 
         //加入口罩特約藥局位置(JSON)
         // fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
