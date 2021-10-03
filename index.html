@@ -371,6 +371,10 @@
                     attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
                 }),
 
+                LandOffice = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LandOffice/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+                    attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
+                }),
+
                 LAND_OPENDATA = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LAND_OPENDATA/default/GoogleMapsCompatible/{z}/{y}/{x}", {
                     attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
                 }),
@@ -395,16 +399,6 @@
                 D_water_prot_area = L.tileLayer.wms('https://geose.epa.gov.tw/epagis/services/PublicWMS/MapServer/WMSServer?', {
                     format: 'img/png', transparent: true, layers: "3",
                     attribution: "<a href='https://www.epa.gov.tw/' target='_blank'>行政院環保署</a>"
-                }),
-
-                Natural_Conserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
-                    format: 'img/png', transparent: true, layers: "19",
-                    attribution: "<a href='https://www.forest.gov.tw/ target='_blank'>農委會林務局</a>"
-                }),
-
-                Natural_Reserve = L.tileLayer.wms('https://gis.forest.gov.tw/arcgis/services/WMS/FHWMS/MapServer/WmsServer?', {
-                    format: 'img/png', transparent: true, layers: "20",
-                    attribution: "<a href='https://www.forest.gov.tw/' target='_blank'>農委會林務局</a>"
                 }),
 
                 Imperative_Wetland = L.tileLayer.wms('http://giss.tcd.gov.tw/tcdmap/services/WebService/WETLANDS_OF_IMPORTANCE/MapServer/WMSServer?', {
@@ -543,8 +537,6 @@
                         "水庫蓄水範圍": ressub,
                         "農田水利會渠道圖": irr_channel,
                         "五萬分之一地質圖": Geology_50000,
-                        "自然保護區": Natural_Conserve,
-                        "自然保留區": Natural_Reserve,
                         "國家重要濕地": Imperative_Wetland,
                         "飲用水水源水質保護區": D_water_prot_area,
                         "海水入侵與地下水鹽化區": Salinizationzone,
@@ -563,12 +555,13 @@
 
                     }
                 }, {
-                    groupName: "行政區、地籍界",
+                    groupName: "管理界線",
                     layers: {
                         "縣市界": CITY,
                         "鄉鎮市界": TOWN,
                         "村里界": Village201910,
                         "段籍圖": LANDSECT,
+                        "地政事務所轄區":LandOffice,
 
 
 
