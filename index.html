@@ -73,6 +73,10 @@
     <link rel="stylesheet" href="src/easy-button.css" />
     <script src="src/easy-button.js"></script>
 
+    <script src="src/Speed.js"></script>
+    <!--add geoJson -->
+
+
     <style>
         html {
             margin: 0px;
@@ -275,7 +279,7 @@
                 <img width=80% src="https://i.imgur.com/0XnTNld.jpg">
             </div>
             <p>點選任意處關閉</p>
-    </div>
+        </div>
 
 
 
@@ -452,6 +456,19 @@
                     attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
                 });
 
+                var Speed_Measure = new L.markerClusterGroup(); 
+                    SMM = new L.GeoJSON(SM, {
+                        onEachFeature: function onEachFeature(feature, layer) {
+                            layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit +" km" + "</br>"+"<b>資料來源：https://reurl.cc/Q6ZvO0</b>"); 
+                            
+                        },
+
+                    });
+                Speed_Measure.addLayer(SMM);
+
+                    
+                
+
             // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
             //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
             //     attribution: "臺師大地形室"
@@ -472,6 +489,7 @@
                     //map.addLayer(marker); 就是它，害我疑惑好久為何圖層會預設顯示!!!!!
                 })
             );
+
 
 
 
@@ -527,6 +545,7 @@
                         "國土利用調查成果": LUIMAP,
                         "焚化爐廠區範圍": Incineratorarea,
                         "口罩特約藥局(TEST)": marker,
+                        "測速照相點位": Speed_Measure,
 
                     }
                 }, {
@@ -542,6 +561,7 @@
                         "海水入侵與地下水鹽化區": Salinizationzone,
                         "地下水第一級管制區": gwconare,
                         "地下水第二級管制區": gwconare2,
+                        
 
                     }
                 }, {
@@ -561,7 +581,7 @@
                         "鄉鎮市界": TOWN,
                         "村里界": Village201910,
                         "段籍圖": LANDSECT,
-                        "地政事務所轄區":LandOffice,
+                        "地政事務所轄區": LandOffice,
 
 
 
@@ -668,22 +688,23 @@
                 c.setCoordinates(e);
             });
 
-         
+
             //用L.easyButton結合Leaflet.StyledLayerControl達到一鍵刪除疊圖圖層功能
             L.easyButton('<span class="star">&cross;</span>', function () {
                 control.unSelectGroup("土地使用圖層"),
-                control.unSelectGroup("環境圖層"),
-                control.unSelectGroup("災害潛勢圖層"),
-                control.unSelectGroup("行政區、地籍界")}, 
-                
+                    control.unSelectGroup("環境圖層"),
+                    control.unSelectGroup("災害潛勢圖層"),
+                    control.unSelectGroup("行政區、地籍界")
+            },
+
                 //hover show text
                 '刪除套疊圖層',
                 {
-                position: 'topright',
+                    position: 'topright',
                 },
-                
+
             ).addTo(map);
-            
+
 
         //加入口罩特約藥局位置(JSON)
         // fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
