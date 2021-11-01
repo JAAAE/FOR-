@@ -459,7 +459,7 @@
                 var Speed_Measure = new L.markerClusterGroup(); 
                     SMM = new L.GeoJSON(SM, {
                         onEachFeature: function onEachFeature(feature, layer) {
-                            layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit +" km" + "</br>"+"<b>資料來源：https://reurl.cc/Q6ZvO0</b>"); 
+                            layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit +" km" + "</br>"+"<a href='https://reurl.cc/Q6ZvO0'>原始資料來源</a>"); 
                             
                         },
 
