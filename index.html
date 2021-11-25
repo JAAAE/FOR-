@@ -72,9 +72,15 @@
     <!-- EasyButton -->
     <link rel="stylesheet" href="src/easy-button.css" />
     <script src="src/easy-button.js"></script>
-
-    <script src="src/Speed.js"></script>
     <!--add geoJson -->
+    <script src="src/Speed.js"></script>
+
+    <!--OSM_building-->
+    <script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>
+    <link href="https://cdn.osmbuildings.org/4.0.0/OSMBuildings.css" rel="stylesheet">
+
+
+
 
 
     <style>
@@ -456,7 +462,7 @@
                     attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
                 });
 
-                var Speed_Measure = new L.markerClusterGroup(); 
+                Speed_Measure = new L.markerClusterGroup(); 
                     SMM = new L.GeoJSON(SM, {
                         onEachFeature: function onEachFeature(feature, layer) {
                             layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit +" km" + "</br>"+"<a href='https://reurl.cc/Q6ZvO0' target='_blank'>原始資料來源</a>"); 
@@ -466,6 +472,8 @@
                     });
                 Speed_Measure.addLayer(SMM);
 
+                OSM_Building = new OSMBuildings(map).load('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
+                
                     
                 
 
@@ -501,7 +509,7 @@
                 layers: [OpenStreetMap_Mapnik]
 
             });
-
+            
 
             var baseMaps = [
                 {
@@ -546,6 +554,8 @@
                         "焚化爐廠區範圍": Incineratorarea,
                         "口罩特約藥局(TEST)": marker,
                         "測速照相點位": Speed_Measure,
+                        "OSM Building":OSM_Building,
+                        
 
                     }
                 }, {
@@ -601,7 +611,6 @@
 
             var control = L.Control.styledLayerControl(baseMaps, overlays, options);
             map.addControl(control);
-
 
             //---------ALLOWS SCROLLING OF THE LAYER CONTROL PANEL ON TOUCH DEVICES--------
             if (!L.Browser.touch) {
