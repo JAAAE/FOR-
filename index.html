@@ -81,8 +81,6 @@
 
 
 
-
-
     <style>
         html {
             margin: 0px;
@@ -462,20 +460,20 @@
                     attribution: "<a href='https://maps.nlsc.gov.tw/' target='_blank'>國土測繪中心</a>"
                 });
 
-                Speed_Measure = new L.markerClusterGroup(); 
-                    SMM = new L.GeoJSON(SM, {
-                        onEachFeature: function onEachFeature(feature, layer) {
-                            layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit +" km" + "</br>"+"<a href='https://reurl.cc/Q6ZvO0' target='_blank'>原始資料來源</a>"); 
-                            
-                        },
+            Speed_Measure = new L.markerClusterGroup();
+            SMM = new L.GeoJSON(SM, {
+                onEachFeature: function onEachFeature(feature, layer) {
+                    layer.bindPopup("<b>方向：</b>" + feature.properties.direct + "</br>" + "<b>速限：</b>" + feature.properties.limit + " km" + "</br>" + "<a href='https://reurl.cc/Q6ZvO0' target='_blank'>原始資料來源</a>");
 
-                    });
-                Speed_Measure.addLayer(SMM);
+                },
 
-                OSM_Building = new OSMBuildings(map).load('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
-                
-                    
-                
+            });
+            Speed_Measure.addLayer(SMM);
+
+            OSM_Building = new OSMBuildings(map).load('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
+
+
+
 
             // River_1904 = L.Geoserver.wms("http://localhost:8080/geoserver/tiger/wms", {
             //     layers: "tiger:河道_全台河流_1904_WGS84", transparent: true, format: 'image/png',
@@ -509,7 +507,7 @@
                 layers: [OpenStreetMap_Mapnik]
 
             });
-            
+
 
             var baseMaps = [
                 {
@@ -554,8 +552,8 @@
                         "焚化爐廠區範圍": Incineratorarea,
                         "口罩特約藥局(TEST)": marker,
                         "測速照相點位": Speed_Measure,
-                        "OSM Building":OSM_Building,
-                        
+                        "OSM Building": OSM_Building,
+
 
                     }
                 }, {
@@ -571,7 +569,7 @@
                         "海水入侵與地下水鹽化區": Salinizationzone,
                         "地下水第一級管制區": gwconare,
                         "地下水第二級管制區": gwconare2,
-                        
+
 
                     }
                 }, {
@@ -700,7 +698,7 @@
 
             //用L.easyButton結合Leaflet.StyledLayerControl達到一鍵刪除疊圖圖層功能
             L.easyButton('<span class="star">&cross;</span>', function () {
-                    control.unSelectGroup("土地使用圖層"),
+                control.unSelectGroup("土地使用圖層"),
                     control.unSelectGroup("環境圖層"),
                     control.unSelectGroup("災害潛勢圖層"),
                     control.unSelectGroup("行政區、地籍界")
@@ -714,32 +712,15 @@
 
             ).addTo(map);
 
-        //加入口罩特約藥局位置(JSON)
-        // fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
-        // .then(function(response) {
-        //     return response.json();
-        // })
-        // .then(function(data) {
-        //     console.log(data);
-        //     var geojson = L.geoJSON(data, {
-        //         onEachFeature: function (feature, layer) {
-        //         layer.bindPopup("<b>藥局名稱：</b>" + feature.properties.name + "</br>" + "<b>藥局地址：</b>" + feature.properties.address + "</br>" + "<b>藥局電話：</b>" + feature.properties.phone + "</br>"+"<b>大人口罩數量</b>：" + feature.properties.mask_adult + "</br>"+"<b>小孩口罩數量</b>：" + feature.properties.mask_adult + "</br>" + "<b>更新時間</b>：" + feature.properties.updated);
-        //         }
-        //     });
-        //     //加入cluster(藥局)
-        //     var clusters = L.markerClusterGroup();
-        //     clusters.addLayer(geojson);
-        //     map.addLayer(clusters);
-        // });
+            // 測試 youbike
+            // var markerGroup = L.featureGroup([]).addTo(map);
 
-        //第二種方法(iquery)
-        // function addDataToMap(data, map) {
-        // var dataLayer = L.geoJson(data);
-        // var clusters = L.markerClusterGroup();
-        // clusters.addLayer(dataLayer);
-        // map.addLayer(clusters);
-        // }
-        // $.getJSON("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json", function(data) { addDataToMap(data, map); });
+            // $.getJSON('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json', function (data) {
+            //     for (var key in data.retVal) {
+            //         var latLng = L.latLng([data.retVal[key].lat, data.retVal[key].lng]);
+            //         L.marker(latLng).bindPopup(data.retVal[key].Status).addTo(markerGroup);
+            //     }
+            // });
 
 
         // test
@@ -791,7 +772,7 @@
         // setInterval(updateClock, 1000);
 
 
-      
+
 
 
         </script>
